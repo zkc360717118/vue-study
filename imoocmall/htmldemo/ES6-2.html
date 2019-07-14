@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2>es6-2demo 演示 es6简介之数组扩展</h2>
+<script>
+  //es5加法的写法
+  function sum(x,y,z){
+    let total=0;
+    if(x) total+=x;
+    if(y) total+=y;
+    if(z) total+=z;
+
+    console.log(`total:${total}`); //注意标点符号
+  }
+  sum(5,"",9)
+
+  //es6写法
+  function sum2(...m) {
+    let total = 0;
+    for(var i of m) {
+      total +=i;
+    }
+    console.log(`totaol: ${total}`)
+  }
+  sum2(3,3,3,3,3,3)
+
+  let sum3 = (...m)=>{
+    let total = 0;
+    for(var i of m) {
+      total +=i;
+    }
+    console.log(`tatal: ${total}`)
+  }
+
+  sum3(4,5,6,7,)
+
+  //数组的扩展1
+  console.log(...[4,9]) //这里会把数组中的数据拆分出来，然后分别打印出来 结果就是 4， 9
+  //数组的扩展2
+  let arr1 = [1,3];
+  let arr2 = [4, 8];
+  console.log([...arr1,...arr2]) //把2个数组合并成一个 1,2,4,8
+  //数组的扩展3
+  var [x,...y] = [4,3,2,1,]
+  console.log(`x: ${x}`)  //x==4
+  console.log(`y: ${y}`)  //y==3,2,1
+  // //数组的扩展4
+  let [a,b,c] = "ES6";
+  console.log(`a: ${a}`) //E
+  console.log(`a: ${b}`) //S
+  console.log(`a: ${c}`) //6
+ //数组的扩展5
+  let ht=[..."DWS"]
+  console.log(`x:${ht}`) // D,W,S
+//  console.log(`x:${t}`)
+
+</script>
+</body>
+</html>

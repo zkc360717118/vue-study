@@ -2,9 +2,13 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import App from './App'
-import router from './router'
+import {router} from './router'
+// import {sum,minux} from "./util";
 
 Vue.config.productionTip = false
+
+
+// console.log(`sum:${sum(1,6)}`)
 
 /* eslint-disable no-new */
 new Vue({

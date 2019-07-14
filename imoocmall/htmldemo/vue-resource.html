@@ -5,15 +5,15 @@
     <title>Title</title>
   <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-  <script src="node_modules/vue/dist/vue.js"></script>
-  <script src="./node_modules/vue-resource/dist/vue-resource.js"></script>
+  <script src="../node_modules/vue/dist/vue.js"></script>
+  <script src="../node_modules/vue-resource/dist/vue-resource.js"></script>
 </head>
 <body>
     <div id="app" class="container">
       <h1>vue-resource插件</h1>
       <a href="javascript:;" class="btn btn-primary" v-on:click="get">get请求</a>
       <a href="javascript:;" class="btn btn-primary" @click="post">post请求</a>
-      <a href="javascript:;" class="btn btn-primary" @click="jsonp">Jsonp请求</a>
+      <a href="javascript:;" class="btn btn-primary" @click="jsonp">Jsonp请求(没测通，暂时放这里)</a>
       <div>{{msg}}</div>
     </div>
     <script>
@@ -21,6 +21,19 @@
         el: "#app",
         data: {
           msg: ''
+        },
+        http: {
+          root: ""  //配置默认的公共url地址，比如www.baidu.com/ x  ，  www.baidu.com/b  ,  那么就把前面重复的放在一起
+        },
+        mounted: function () {
+//          拦截器
+          Vue.http.interceptors.push(function (request,next){
+            console.log("request init");
+            next(function (response){
+              console.log("response init.");
+              return response;
+            })
+          });
         },
         methods: {
           get: function(){
@@ -56,8 +69,8 @@
           },
 
           jsonp: function () {
-            this.$http.jsonp("http://localhost:8080/getmsg").then(res=>{
-              console.log(res)
+            this.$http.jsonp('http://www.liulongbin.top:3005/api/getprodlist').then(result=>{
+              console.log(result.body)
             })
           }
         }

@@ -16,11 +16,11 @@
     methods:{
       increment(){
         this.$emit("incre")
-        // this.child_num++;
+         this.child_num++;
       },
       decrement(){
         this.$emit("decre")
-        // this.child_num--;
+         this.child_num--;
       }
     }
 
